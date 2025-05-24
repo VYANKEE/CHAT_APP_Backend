@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chats</title>
+  <link rel="stylesheet" href="/stye.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>All Chats 💬</h1>
+    <form method="get" action="/chats/new">
+      <button>New Chat</button>
+    </form>
+
+    <% for (let chat of chats) { %>
+      <div class="chat-box">
+        <p><strong>From:</strong> <%= chat.from %></p>
+        <p class="message"><%= chat.msg %></p>
+        <form method="get" action="/chats/<%= chat._id %>/edit">
+          <button>EDIT</button>
+        </form>
+        <form method="post" action="/chats/<%= chat._id %>?_method=DELETE">
+          <button>DELETE</button>
+        </form>
+        <p><strong>To:</strong> <%= chat.to %></p>
+        <p class="date">📅 <%= new Date(chat.date).toLocaleString() %></p>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
